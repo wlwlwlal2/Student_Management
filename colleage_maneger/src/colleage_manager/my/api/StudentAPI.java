@@ -1,4 +1,4 @@
-package colleage_maneger.my.api;
+package colleage_manager.my.api;
 
 public class StudentAPI {
 	

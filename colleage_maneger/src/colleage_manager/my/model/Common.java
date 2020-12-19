@@ -35,7 +35,7 @@ public class Common {
 	@Column
 	private String lectureName;
 	@Column
-	private String lectureLotate;
+	private String lectureLocate;
 	
 	
 	public String getNumber() {
@@ -108,11 +108,12 @@ public class Common {
 	}
 	
 	public String getLectureLotate() {
-		return lectureLotate;
+		return lectureLocate;
 	}
 	public void setLectureLotate(String lectureLotate) {
-		this.lectureLotate = lectureLotate;
+		this.lectureLocate = lectureLocate;
 	}
+	
 //	@Override
 //	public void toString
 }

@@ -58,7 +58,7 @@ public class CommonAPI {
     }
 
 
-    public int InfoUpdate(int birth, int phoneNumber, String email, String address, String family) {
+    public int InfoUpdate(String number, int birth, int phoneNumber, String email, String address, String family) {
 	
 	try {
 		
@@ -75,7 +75,7 @@ public class CommonAPI {
 	    em.persist(common);
 	    transaction.commit(); 
 		
-	    Query query = em.createQuery("select t from Common t" + "where t = " + number);
+	    Query query = em.createQuery("update t from Common t" + "where t = " + number);
 	    List result = (List) query.getResultList();
       
 	    em.close();
@@ -84,4 +84,23 @@ public class CommonAPI {
 	}
 	return 0;
 }
+    
+    public int Read(String number) {
+    	
+    	
+    	try {
+    		
+    	    Query query = em.createQuery("select t from Common t" + "where t = " + number);
+    	    List resultList = (List) query.getSingleResult();
+            
+    	    em.close();
+    	    
+          	System.out.println(resultList);
+          		
+    	} catch (Exception e) {
+    	
+    	}
+    	return 0;
+    }
+
 }

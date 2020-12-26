@@ -15,29 +15,24 @@ public class CommonAPI {
     private EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME); 
     private EntityManager em = factory.createEntityManager();
     
-    
+    	
     public int Resister(String number, String password) {
     	
     	try {
     		
     		Common common = new Common();
-    		common.setNumber("202020202");
-    		common.setPassword("202020202");
+    		common.setNumber(number);
+    		common.setPassword(password);
     		
     		EntityTransaction transaction = em.getTransaction();
     	    transaction.begin(); 
     	    em.persist(common);
     	    transaction.commit(); 
     		
-    	    Query query = em.createQuery("select t from Common t");
-    	    List result = (List) query.getResultList();
-            
-            System.out.println(result.toString());
-            
     	    em.close();
     	} catch (Exception e) {
     	
-    	}
+    	} 
     	return 0;
     }
     
@@ -46,16 +41,7 @@ public class CommonAPI {
     	
     	try {
     		
-    		Common common = new Common();
-    		common.setNumber("202020202");
-    		common.setPassword("202020202");
-    		
-    		EntityTransaction transaction = em.getTransaction();
-    	    transaction.begin(); 
-    	    em.persist(common);
-    	    transaction.commit(); 
-    		
-    	    Query query = em.createQuery("select t from Common t where");
+    	    Query query = em.createQuery("select t from Common t" + "where t = " + number);
     	    String resultList = (String) query.getSingleResult();
             em.close();
     	    
@@ -72,23 +58,24 @@ public class CommonAPI {
     }
 
 
-    public int InfoUpdate(int birth, int phoneNumber, String email, String adress, String family) {
+    public int InfoUpdate(int birth, int phoneNumber, String email, String address, String family) {
 	
 	try {
 		
 		Common common = new Common();
-		common.setBirth(2);
-    	common.setPhoneNumber(2);
-    	common.setEmail("2");
-    	common.setAddress("2");
-    	common.setFamily("2");
+		
+		common.setBirth(birth);
+    	common.setPhoneNumber(phoneNumber);
+    	common.setEmail(email);
+    	common.setAddress(address);
+    	common.setFamily(family);
 		
 		EntityTransaction transaction = em.getTransaction();
 	    transaction.begin(); 
 	    em.persist(common);
 	    transaction.commit(); 
 		
-	    Query query = em.createQuery("select t from Common t");
+	    Query query = em.createQuery("select t from Common t" + "where t = " + number);
 	    List result = (List) query.getResultList();
       
 	    em.close();

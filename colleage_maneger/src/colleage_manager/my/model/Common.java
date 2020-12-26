@@ -107,10 +107,10 @@ public class Common {
 		this.lectureName = lectureName;
 	}
 	
-	public String getLectureLotate() {
+	public String getLectureLocate() {
 		return lectureLocate;
 	}
-	public void setLectureLotate(String lectureLotate) {
+	public void setLectureLocate(String lectureLocate) {
 		this.lectureLocate = lectureLocate;
 	}
 	

@@ -27,6 +27,27 @@
 		    <artifactId>persistence-api</artifactId>
 		    <version>1.0</version>
 		</dependency>
+  
+  <!-- https://mvnrepository.com/artifact/info.picocli/picocli -->
+		<dependency>
+			<groupId>info.picocli</groupId>
+			<artifactId>picocli</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/info.picocli/picocli-shell-jline3 -->
+		<dependency>
+			<groupId>info.picocli</groupId>
+			<artifactId>picocli-shell-jline3</artifactId>
+			<version>4.2.0</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.fusesource.jansi/jansi -->
+		<dependency>
+			<groupId>org.fusesource.jansi</groupId>
+			<artifactId>jansi</artifactId>
+			<version>1.18</version>
+		</dependency>
   </dependencies>
   
   <build>

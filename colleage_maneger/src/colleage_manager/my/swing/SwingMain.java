@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import com.lec.my.ui.main.LoginPanel
+import com.lec.my.ui.main.*;;
 public class SwingMain extends JFrame {
 	/**
 	 * 

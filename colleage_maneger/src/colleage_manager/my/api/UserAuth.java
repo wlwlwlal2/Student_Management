@@ -1,0 +1,55 @@
+package colleage_manager.my.api;
+
+import colleage_manager.my.model.Common;
+
+public class UserAuth {
+	private static UserAuth instance;
+	private Common loginUser;
+	private CommonAPI loginAPI;
+	
+	// Singleton Pattern
+	public static UserAuth getInstance() {
+		if(instance == null) {
+			instance = new UserAuth();
+		}
+		return instance;
+	}
+	
+	public void login(Common common) {
+		this.loginUser = common;
+		
+		
+		switch(common.getRole()) {
+		case "student": 
+			loginAPI = new StudentAPI(); break;
+//		case "professor": 
+//			CommonAPI = new ProfessorAPI(); break;
+//		case "admin": 
+//			CommonAPI = new AdminAPI(); break;
+//		case "employee": 
+//			CommonAPI = new EmployeeAPI(); break;
+		default: break;
+		}
+	}
+	
+	public boolean isLogin() {
+		return (loginUser != null) ? true : false;
+	}
+	
+	public String getLoginName() {
+		return loginUser.getName();
+	}
+	
+	public Common getUser() {
+		return loginUser;
+	}
+	
+	public CommonAPI getUserAPI() {
+		return loginAPI;
+	}
+	
+	public void logout() {
+		loginUser = null;
+		loginAPI = null;
+	}
+}

@@ -21,10 +21,10 @@ public class Common {
 	private int classNumber;
 	// 학과별로 존재하는 학과코드
 	@Column
-	private int birth;
+	private String birth;
 	// 생년월일, ex) 20201205
 	@Column
-	private int phoneNumber;
+	private String phoneNumber;
 	// 휴대폰 번호
 	@Column
 	private String email;
@@ -36,7 +36,8 @@ public class Common {
 	private String lectureName;
 	@Column
 	private String lectureLocate;
-	
+	@Column
+	private String role;
 	
 	public String getNumber() {
 		return number;
@@ -65,17 +66,17 @@ public class Common {
 		this.classNumber = classNumber;
 	}
 	
-	public int getBirth() {
+	public String getBirth() {
 		return birth;
 	}
-	public void setBirth(int birth) {
+	public void setBirth(String birth) {
 		this.birth = birth;
 	}
 	
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 	
@@ -112,6 +113,14 @@ public class Common {
 	}
 	public void setLectureLocate(String lectureLocate) {
 		this.lectureLocate = lectureLocate;
+	}
+	
+	public String getRole() {
+		return role;
+	}
+	
+	public void setRole(String role) {
+		this.role = role;
 	}
 	
 //	@Override

@@ -16,16 +16,15 @@ import colleage_manager.my.model.Common;
 
 public class CommonAPI {
 	private static final String PERSISTENCE_UNIT_NAME = "h2";
-	private EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	protected EntityManager em = factory.createEntityManager();
+	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+	protected static EntityManager em = factory.createEntityManager();
 
 	
-	public boolean Register(String number, String password) {
+	public boolean Register(String role, String number, String password) {
 		try {
 			Common common = new Common();
 			common.setNumber(number);
 			common.setPassword(password);
-			String role = "student";
 			common.setRole(role);
 
 			EntityTransaction transaction = em.getTransaction();
@@ -63,22 +62,24 @@ public class CommonAPI {
 
 	}
 
-	public boolean InfoUpdate(String number, String name, String birth, String phoneNumber, String email, String address) {
+	public boolean InfoUpdate(String number, String name, String birth, String phoneNumber, String email, String address, String family) {
 
 		try {
-		Common common = new Common();
-		common.setNumber(number);
+			
+		Common common = em.find(Common.class, number);
+
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+		
 		common.setName(name);
 		common.setBirth(birth);
 		common.setPhoneNumber(phoneNumber);
 		common.setEmail(email);
 		common.setAddress(address);
+		common.setFamily(family);
 		String role = "student";
 		common.setRole(role);
 		
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
-		em.persist(common);
 		transaction.commit();
 		
 		} catch (Exception e) {
@@ -111,7 +112,7 @@ public class CommonAPI {
 		else
 			return null;
 	}
-
+	
 	public List<Common> readAll() {
 		return null;
 	}

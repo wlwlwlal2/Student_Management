@@ -40,22 +40,24 @@ public class SwingMain extends JFrame {
 	private final static String MainTab = "MAIN";
 	private final static String StudentTab = "STUDENT";
 	
+	
 	@SuppressWarnings("unused")
 	public SwingMain() {
 		setLocation(200, 400);
 		setPreferredSize(new Dimension(400, 600));
 		
 		mainTab = new MainTab(this);
-		studentTab = new StudentTab(this);
+		studentTab = new InfoTab(this);
 		
 		Container pan = getContentPane();
 		pan.setLayout(layout);
 		pan.add(MainTab, mainTab);
 		pan.add(StudentTab, studentTab);
 		
+		
 		LoginPanel loginFrame = new LoginPanel(this);
 		SignUpPanel signUpFrame = new SignUpPanel();
-		// this.add(loginFrame, BorderLayout.CENTER);	
+			
 		
 		
 		this.pack();
@@ -81,4 +83,5 @@ public class SwingMain extends JFrame {
 	public void changeStudentTab() {;
 		layout.show(this.getContentPane(), StudentTab);
 	}
+	
 }

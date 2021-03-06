@@ -78,12 +78,12 @@ import colleage_manager.my.model.Common;
 	
 	public class StudentAPI extends CommonAPI {
 		@Override
-		public boolean Register(String number, String password) {
+		public boolean Register(String role, String number, String password) {
 			try {
 				Common user = new Common();
 				user.setNumber(number);
 				user.setPassword(password);
-				user.setRole("student");
+				user.setRole("ÇÐ»ý");
 
 				EntityTransaction transaction = em.getTransaction();
 				transaction.begin();

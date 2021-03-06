@@ -1,5 +1,7 @@
 package com.lec.my.ui.main;
 
+import java.awt.CardLayout;
+import java.awt.Container;
 //import javax.swing.BoxLayout;
 //import javax.swing.JButton;
 //import javax.swing.JPanel;
@@ -51,15 +53,25 @@ import javax.swing.JTextField;
 import colleage_manager.my.api.CommonAPI;
 import colleage_manager.my.api.UserAuth;
 import colleage_manager.my.model.Common;
+import colleage_manager.my.swing.SwingMain;
+
+
 
 @SuppressWarnings("serial")
-public class InformationPanel extends JPanel {
+public class ProfessorInformationPanel extends JPanel {
+	
+	protected static final String LoginTab = null;
 	private HashMap<String, JTextField> infoMap = new HashMap<String, JTextField>();
 	private JButton saveBtn;
 	private JButton loadBtn;
+	private JButton check;
+	private JButton logout;
 	private CommonAPI api = new CommonAPI();
+	private CardLayout layout = new CardLayout();
+	private SwingMain frame;
 	
-	public InformationPanel() {	
+	public ProfessorInformationPanel(SwingMain frame) {	
+		this.frame = frame;
 		genInfoPair("id", "ID(학번)");
 		genInfoPair("name", "이름");
 		genInfoPair("phone", "전화번호");
@@ -67,6 +79,8 @@ public class InformationPanel extends JPanel {
 		genInfoPair("birth", "생년월일");
 		genInfoPair("pwd", "비밀번호");
 		genInfoPair("address", "주소");
+		
+		
 		
 		saveBtn = (new JButton("내 정보 저장하기"));
 		saveBtn.setPreferredSize(new Dimension(200, 30));
@@ -76,6 +90,15 @@ public class InformationPanel extends JPanel {
 		loadBtn.setPreferredSize(new Dimension(200, 30));
 		loadBtn.addActionListener(loadListener);
 		add(loadBtn);
+		logout = (new JButton("로그아웃"));
+		logout.setPreferredSize(new Dimension(200, 30));
+		logout.addActionListener(Logout);
+		add(logout);
+		check = (new JButton("확인"));
+		check.setPreferredSize(new Dimension(200, 30));
+		//loadBtn.addActionListener(loadListener);
+		add(check);
+		
 	}
 	
 	private void genInfoPair(String id, String name) {
@@ -99,10 +122,11 @@ public class InformationPanel extends JPanel {
 				String birth = infoMap.get("birth").getText();
 				String phoneNumber = infoMap.get("phone").getText();
 				String email = infoMap.get("email").getText();
+				String birth2 = infoMap.get("birth").getText();
 				String address = infoMap.get("address").getText();
 				
 				
-				boolean result1 = api.InfoUpdate(number,name, birth, phoneNumber, email, address);
+				//boolean result1 = api.InfoUpdate(number,name, birth2, phoneNumber, email, address);
 				Common result2 = api.Read(number);
 				JOptionPane op1 = new JOptionPane();
 				if (result2 != null) {
@@ -124,10 +148,29 @@ public class InformationPanel extends JPanel {
 				infoMap.get("name").setText(user.getName());
 				infoMap.get("phone").setText(user.getPhoneNumber());
 				infoMap.get("email").setText(user.getEmail());
-				
+				infoMap.get("birth").setText(user.getBirth());
 				infoMap.get("pwd").setText(user.getPassword());
 				infoMap.get("address").setText(user.getAddress());
 			}
 		}
+	};
+	public ActionListener Logout = new ActionListener() {
+	
+		public void actionPerformed(ActionEvent e) {
+			UserAuth auth = UserAuth.getInstance();
+			auth.logout();
+			SwingMain ins = new SwingMain();
+			ins.setVisible(true);
+			frame.dispose();
+		//layout.show(this.getContentPane(), MainTab);
+			
+	
+		}
+		
+	
+		
+		
+		
+		
 	};
 }

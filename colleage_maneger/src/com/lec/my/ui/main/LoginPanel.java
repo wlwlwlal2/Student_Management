@@ -59,7 +59,6 @@ public class LoginPanel extends JPanel {
     				frame.changeStudentTab();
     				
                 	op1.showMessageDialog(null, number + " 로그인 성공");
-                	
     			} else {
     				op1.showMessageDialog(null, number + " 로그인 실패");   
     			}

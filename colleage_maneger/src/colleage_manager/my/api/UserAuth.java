@@ -20,10 +20,10 @@ public class UserAuth {
 		
 		
 		switch(common.getRole()) {
-		case "student": 
+		case "학생": 
 			loginAPI = new StudentAPI(); break;
-//		case "professor": 
-//			CommonAPI = new ProfessorAPI(); break;
+		case "교수": 
+			loginAPI = new ProfessorAPI(); break;
 //		case "admin": 
 //			CommonAPI = new AdminAPI(); break;
 //		case "employee": 

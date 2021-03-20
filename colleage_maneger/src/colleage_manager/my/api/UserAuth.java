@@ -1,11 +1,14 @@
 package colleage_manager.my.api;
 
 import colleage_manager.my.model.Common;
+import colleage_manager.my.model.Student;
 
 public class UserAuth {
 	private static UserAuth instance;
 	private Common loginUser;
 	private CommonAPI loginAPI;
+	// private Student StudentUser;
+	
 	
 	// Singleton Pattern
 	public static UserAuth getInstance() {

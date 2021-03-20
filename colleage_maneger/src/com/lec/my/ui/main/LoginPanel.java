@@ -17,7 +17,7 @@ import colleage_manager.my.swing.SwingMain;
 public class LoginPanel extends JPanel {
 	private CommonAPI api = new CommonAPI();
 	private SwingMain frame;
-	
+	private String role;
 	
 	
 	private UserAuth auth;
@@ -27,10 +27,8 @@ public class LoginPanel extends JPanel {
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		JTextField tf1 = new JTextField("아이디");
 		JTextField tf2 = new JTextField("비밀번호");
-		
-		
+				
 		JButton j2 = (new JButton("로그인"));
-		
 		
 		this.add(tf1);
 		this.add(tf2);
@@ -38,7 +36,6 @@ public class LoginPanel extends JPanel {
 		add(j2);
 		
 		auth = UserAuth.getInstance();
-		
 		
 		j2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
@@ -49,14 +46,18 @@ public class LoginPanel extends JPanel {
     			if (number == "" || password == "")
     				return;
     			
-    			
     			Common result = api.login(number, password);
     			
     			JOptionPane op1 = new JOptionPane();
     			if (result != null) {
     				
     				auth.login(result);
+    				role = result.getRole();
+    				
+    				if(role == "학생")
     				frame.changeStudentTab();
+    				else if(role == "교수")
+    				frame.changeProfessorTab();
     				
                 	op1.showMessageDialog(null, number + " 로그인 성공");
     			} else {

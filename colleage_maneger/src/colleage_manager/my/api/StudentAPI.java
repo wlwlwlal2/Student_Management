@@ -3,6 +3,7 @@ package colleage_manager.my.api;
 import javax.persistence.EntityTransaction;
 
 import colleage_manager.my.model.Common;
+import colleage_manager.my.model.Student;
 
 
 //	public int login(int studentNumber, String passward) {
@@ -97,4 +98,9 @@ import colleage_manager.my.model.Common;
 
 	
 }
+		
+
+	
+		
+		
 	}

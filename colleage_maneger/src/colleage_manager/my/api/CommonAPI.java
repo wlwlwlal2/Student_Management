@@ -13,6 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import colleage_manager.my.model.Common;
+import colleage_manager.my.model.Student;
 
 public class CommonAPI {
 	private static final String PERSISTENCE_UNIT_NAME = "h2";
@@ -23,13 +24,18 @@ public class CommonAPI {
 	public boolean Register(String role, String number, String password) {
 		try {
 			Common common = new Common();
+			Student student = new Student();
 			common.setNumber(number);
 			common.setPassword(password);
 			common.setRole(role);
+			student.setSubject("°ú¸ñ1");
 
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
+			
 			em.persist(common);
+			em.persist(student);
+			
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();

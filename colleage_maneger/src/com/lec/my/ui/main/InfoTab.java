@@ -1,7 +1,10 @@
 package com.lec.my.ui.main;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Frame;
 
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
@@ -23,14 +26,13 @@ public class InfoTab extends JTabbedPane {
 			user = auth.getUser();
 			role = user.getRole();
 		}
-		
-		if(role == "학생")
+		 
 		addTab("학생 정보", new StudentInformationPanel(frame));
-		else if(role == "교수") 
-		addTab("교수 정보", new ProfessorInformationPanel(frame));
-		else if(role == null) // 테스트
-		addTab("학생 정보", new StudentInformationPanel(frame));
+		addTab("성적", new StudentGradePanel(frame));
+	
 	}
+	
+	
 	
 }
 

@@ -2,6 +2,7 @@ package colleage_manager.my.model;
 
 public class Student {
 
+	private String subject;
 	
 	private String grade;
 	
@@ -15,7 +16,13 @@ public class Student {
 	
 	private int absence; // °á¼®
 
-
+	public String getSubject() {
+		return subject;
+}
+	public void setSubject(String subject) {
+		this.subject = subject;
+}
+	
 	public String getGrade() {
 		return grade;
 }

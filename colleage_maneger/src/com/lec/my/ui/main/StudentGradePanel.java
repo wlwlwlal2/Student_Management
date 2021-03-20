@@ -55,38 +55,34 @@ import colleage_manager.my.api.UserAuth;
 import colleage_manager.my.model.Common;
 import colleage_manager.my.swing.SwingMain;
 
-
-
 @SuppressWarnings("serial")
-public class ProfessorInformationPanel extends JPanel {
+public class StudentGradePanel extends JPanel {
 	
 	protected static final String LoginTab = null;
 	private HashMap<String, JTextField> infoMap = new HashMap<String, JTextField>();
-	private JButton saveBtn;
 	private JButton loadBtn;
-	private JButton check;
 	private JButton logout;
 	private CommonAPI api = new CommonAPI();
 	private CardLayout layout = new CardLayout();
 	private SwingMain frame;
 	
-	public ProfessorInformationPanel(SwingMain frame) {	
+	
+	UserAuth auth = UserAuth.getInstance();
+	Common user = auth.getUser();
+	public StudentGradePanel(SwingMain frame) {	
 		this.frame = frame;
-		genInfoPair("id", "ID(교수)");
+		
+		
+		genInfoPair("id", "ID(학번)");
 		genInfoPair("name", "이름");
-		genInfoPair("phone", "전화번호");
-		genInfoPair("email", "이메일");
-		genInfoPair("birth", "생년월일");
-		genInfoPair("pwd", "비밀번호");
-		genInfoPair("address", "주소");
+		genInfoPair("class1", "과목1");
+		genInfoPair("class2", "과목2");
+		genInfoPair("class3", "과목3");
+		genInfoPair("class4", "과목4");
+		genInfoPair("class5", "과목5");
+		genInfoPair("class6", "과목6");
 		
-		
-		
-		saveBtn = (new JButton("내 정보 저장하기"));
-		saveBtn.setPreferredSize(new Dimension(200, 30));
-		saveBtn.addActionListener(saveListener);
-		add(saveBtn);
-		loadBtn = (new JButton("내 정보 불러오기"));
+		loadBtn = (new JButton("과목 정보 불러오기"));
 		loadBtn.setPreferredSize(new Dimension(200, 30));
 		loadBtn.addActionListener(loadListener);
 		add(loadBtn);
@@ -94,10 +90,6 @@ public class ProfessorInformationPanel extends JPanel {
 		logout.setPreferredSize(new Dimension(200, 30));
 		logout.addActionListener(Logout);
 		add(logout);
-		check = (new JButton("확인"));
-		check.setPreferredSize(new Dimension(200, 30));
-		//loadBtn.addActionListener(loadListener);
-		add(check);
 		
 	}
 	
@@ -112,45 +104,14 @@ public class ProfessorInformationPanel extends JPanel {
 		infoMap.put(id, field);
 	}
 	
-	private ActionListener saveListener = new ActionListener() {
-		public void actionPerformed(ActionEvent e) {
-			UserAuth auth = UserAuth.getInstance();
-			if (auth.isLogin()) {
-				
-				String number = infoMap.get("id").getText();
-				String name = infoMap.get("name").getText();
-				String birth = infoMap.get("birth").getText();
-				String phoneNumber = infoMap.get("phone").getText();
-				String email = infoMap.get("email").getText();
-				String birth2 = infoMap.get("birth").getText();
-				String address = infoMap.get("address").getText();
-				
-				
-				//boolean result1 = api.InfoUpdate(number,name, birth2, phoneNumber, email, address);
-				Common result2 = api.Read(number);
-				JOptionPane op1 = new JOptionPane();
-				if (result2 != null) {
-                	op1.showMessageDialog(null, number + " 정보 저장 성공");
-                	
-    			} else {
-    				op1.showMessageDialog(null, number + " 정보 저장 실패");   
-    			}
-				
-			}
-		}
-	};
 	private ActionListener loadListener = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
-			UserAuth auth = UserAuth.getInstance();
+			
 			if (auth.isLogin()) {
 				Common user = auth.getUser();
 				infoMap.get("id").setText(user.getNumber());
 				infoMap.get("name").setText(user.getName());
-				infoMap.get("phone").setText(user.getPhoneNumber());
-				infoMap.get("email").setText(user.getEmail());
-				infoMap.get("birth").setText(user.getBirth());
-				infoMap.get("pwd").setText(user.getPassword());
-				infoMap.get("address").setText(user.getAddress());
+				infoMap.get("class1").setText(user.getName());
 			}
 		}
 	};

@@ -52,6 +52,7 @@ private CommonAPI api = new CommonAPI();
     			if (result == true) {
                 	op1.showMessageDialog(null, number + " " + role + " 회원가입 성공");
                 	
+                	
     			} else {
     				op1.showMessageDialog(null, number + " 회원가입 실패");   
     			}

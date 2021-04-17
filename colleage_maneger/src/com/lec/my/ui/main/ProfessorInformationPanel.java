@@ -39,6 +39,7 @@ import java.awt.Container;
 //	}
 //}
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -69,6 +70,9 @@ public class ProfessorInformationPanel extends JPanel {
 	private CommonAPI api = new CommonAPI();
 	private CardLayout layout = new CardLayout();
 	private SwingMain frame;
+	
+	
+	
 	
 	public ProfessorInformationPanel(SwingMain frame) {	
 		this.frame = frame;
@@ -167,7 +171,6 @@ public class ProfessorInformationPanel extends JPanel {
 	
 		}
 		
-	
 		
 		
 		

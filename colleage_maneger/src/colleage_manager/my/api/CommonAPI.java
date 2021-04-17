@@ -19,7 +19,9 @@ public class CommonAPI {
 	private static final String PERSISTENCE_UNIT_NAME = "h2";
 	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
 	protected static EntityManager em = factory.createEntityManager();
-
+	
+	
+	private static int i = 0;
 	
 	public boolean Register(String role, String number, String password) {
 		try {
@@ -28,19 +30,22 @@ public class CommonAPI {
 			common.setNumber(number);
 			common.setPassword(password);
 			common.setRole(role);
+			student.setNumber(number);
 			student.setSubject("°ú¸ñ1");
-
+			
+			
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
 			
 			em.persist(common);
-			em.persist(student);
+		em.persist(student);
 			
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
+		
 		return true;
 	}
 		
@@ -112,14 +117,46 @@ public class CommonAPI {
 		
 		Query query = em.createQuery(cQuery);
 		List<Common> resultList = query.getResultList();
-
+			
 		if (resultList.size() == 1)
 			return resultList.get(0);
 		else
 			return null;
 	}
 	
+	public String Test(String number) {
+		Common a = em.find(Common.class, number);
+		return a.getNumber();
+	}
+	
+	
+	public String[] join() {
+		List<Common> list = readAll();
+		String[] result = new String[list.size()];
+		for(int i=0; i<list.size(); i++) {
+			result[i]=list.get(i).getNumber();
+		}
+		return result;
+	}
+	
 	public List<Common> readAll() {
-		return null;
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+
+		CriteriaQuery<Common> cQuery = criteriaBuilder.createQuery(Common.class);
+		Root<Common> from = cQuery.from(Common.class);
+		
+		Query query = em.createQuery(cQuery);
+		List<Common> resultList = query.getResultList();
+			
+//			for(int i = 0; i < resultList.size(); i++ ) {
+//				
+//			}
+		
+			return resultList;
+		
+	}
+	
+	public Common getCommon(String number) {
+		return em.find(Common.class, number);
 	}
 }

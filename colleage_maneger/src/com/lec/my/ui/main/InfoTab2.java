@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Frame;
 
 import javax.swing.JButton;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
@@ -15,9 +16,12 @@ import colleage_manager.my.swing.SwingMain;
 
 public class InfoTab2 extends JTabbedPane {
 	
+	CommonAPI api = new CommonAPI();
+	
 	public InfoTab2(SwingMain frame) {
 		
-		CommonAPI api = new CommonAPI();
+		
+		
 		String role = null;
 		Common user = null;
 		UserAuth auth = UserAuth.getInstance();
@@ -41,12 +45,17 @@ public class InfoTab2 extends JTabbedPane {
 	//	addTab("학생 정보", new StudentInformationPanel(frame));
 		addTab("교수 정보", new ProfessorInformationPanel(frame));
 		addTab("성적", new ProfessorGradePanel(frame));
-		
+		addTab("과목", new SubjectInformationPanel(frame));
+		addTab("강의", new LectureInformationPanel(frame));
 		
 	}
+	
+	
+	}
+		
 	
 //	saveBtn.setPreferredSize(new Dimension(200, 30));
 //	saveBtn.addActionListener(saveListener);
 	
-}
+
 

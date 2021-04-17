@@ -51,6 +51,7 @@ public class UserAuth {
 		return loginAPI;
 	}
 	
+	
 	public void logout() {
 		loginUser = null;
 		loginAPI = null;

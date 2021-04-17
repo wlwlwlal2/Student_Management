@@ -14,10 +14,16 @@ import colleage_manager.my.api.CommonAPI;
 import colleage_manager.my.model.Common;
 
 public class SignUpPanel extends JPanel {
+
+
 private CommonAPI api = new CommonAPI();
 	
 	private String[] role = {"학생","교수"};
-
+	
+	
+	
+	
+	
 	public SignUpPanel() {
 
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -53,6 +59,7 @@ private CommonAPI api = new CommonAPI();
                 	op1.showMessageDialog(null, number + " " + role + " 회원가입 성공");
                 	
                 	
+                	
     			} else {
     				op1.showMessageDialog(null, number + " 회원가입 실패");   
     			}
@@ -64,5 +71,9 @@ private CommonAPI api = new CommonAPI();
 		
         
 	}
+	
+
+
+	
 }
 

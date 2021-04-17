@@ -29,6 +29,8 @@ public class InfoTab extends JTabbedPane {
 		 
 		addTab("학생 정보", new StudentInformationPanel(frame));
 		addTab("성적", new StudentGradePanel(frame));
+		// addTab("과목", new SubjectInformationPanel(frame));
+		addTab("강의", new LectureInformationPanel(frame));
 	
 	}
 	

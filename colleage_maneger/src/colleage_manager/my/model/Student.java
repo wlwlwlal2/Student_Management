@@ -1,21 +1,41 @@
 package colleage_manager.my.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table
 public class Student {
 
+	
+	@Id
+	@Column
+	private String number;
+	@Column
 	private String subject;
-	
+	@Column
 	private String grade;
-	
+	@Column
 	private int realGrade;
-	
+	@Column
 	private int maxAttendance; // 과목 출석시간
-	
+	@Column
 	private int attendance; // 출석시간
-	
+	@Column
 	private int lateness; // 지각
-	
+	@Column
 	private int absence; // 결석
 
+	
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
+	
 	public String getSubject() {
 		return subject;
 }

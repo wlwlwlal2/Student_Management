@@ -21,7 +21,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
-import com.lec.my.ui.main.*;;
+import com.lec.my.ui.main.*;
+
+import colleage_manager.my.api.CommonAPI;
+import colleage_manager.my.api.SubjectAPI;;
 
 
 public class SwingMain extends JFrame {
@@ -32,6 +35,7 @@ public class SwingMain extends JFrame {
 	private static final long serialVersionUID = 1L;
 	private static SwingMain instance = new SwingMain();
 	private CardLayout layout = new CardLayout();
+	private SubjectAPI api = new SubjectAPI();
 	
 	private JTabbedPane mainTab;
 	private JTabbedPane InfoTab;
@@ -70,6 +74,12 @@ public class SwingMain extends JFrame {
 		
 		
 		this.setVisible(true);
+		
+		api.Register("001","과목1", "공ㅇㅇ","전필","50");
+		api.Register("002","과목2", "공ㅇㅇ","전필","50");
+		api.Register("003","과목3", "공ㅇㅇ","전필","50");
+		api.Register("004","과목4", "공ㅇㅇ","전필","50");
+		api.Register("005","과목5", "공ㅇㅇ","전필","50");
 		}
 	
 	
@@ -87,6 +97,7 @@ public class SwingMain extends JFrame {
 		layout.show(this.getContentPane(), StudentTab);
 	}
 	public void changeProfessorTab() {;
+		
 		layout.show(this.getContentPane(), ProfessorTab);
 }
 	

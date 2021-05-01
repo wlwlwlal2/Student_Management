@@ -11,6 +11,7 @@ import java.awt.Event;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.AbstractButton;
 import javax.swing.Box;
@@ -24,7 +25,9 @@ import javax.swing.JTextField;
 import com.lec.my.ui.main.*;
 
 import colleage_manager.my.api.CommonAPI;
-import colleage_manager.my.api.SubjectAPI;;
+import colleage_manager.my.api.LectureAPI;
+import colleage_manager.my.api.SubjectAPI;
+import colleage_manager.my.model.Subject;;
 
 
 public class SwingMain extends JFrame {
@@ -32,11 +35,13 @@ public class SwingMain extends JFrame {
 	 * 
 	 */
 	
+	// Database API 코드 이동 필요
+	private SubjectAPI api = SubjectAPI.getInstance();
+	private LectureAPI lapi = LectureAPI.getInstance();
+	
 	private static final long serialVersionUID = 1L;
 	private static SwingMain instance = new SwingMain();
 	private CardLayout layout = new CardLayout();
-	private SubjectAPI api = new SubjectAPI();
-	
 	private JTabbedPane mainTab;
 	private JTabbedPane InfoTab;
 	private JTabbedPane studentTab;
@@ -46,11 +51,24 @@ public class SwingMain extends JFrame {
 	private final static String StudentTab = "STUDENT";
 	private final static String ProfessorTab = "PROFESSOR";
 	
+	private void initDB() {
+		api.Register("001","과목1", "공ㅇㅇ","전필","50");
+		api.Register("002","과목2", "공ㅇㅇ","전필","50");
+		api.Register("003","과목3", "공ㅇㅇ","전필","50");
+		api.Register("004","과목4", "공ㅇㅇ","전필","50");
+		api.Register("005","과목5", "공ㅇㅇ","전필","50");
+		lapi.Register("005","과목5","강의1","이ㅇㅇ","60","60");
+	}
+	
 	@SuppressWarnings("unused")
 	public SwingMain() {
+		
+		initDB();
+		List<Subject> sublist = api.readAll();
+		
 		setLocation(200, 400);
 		setPreferredSize(new Dimension(500, 600));
-		
+	
 		mainTab = new MainTab(this);
 		studentTab = new InfoTab(this);
 		professorTab = new InfoTab2(this);
@@ -64,32 +82,20 @@ public class SwingMain extends JFrame {
 		
 		LoginPanel loginFrame = new LoginPanel(this);
 		SignUpPanel signUpFrame = new SignUpPanel();
-			
-		
 		
 		this.pack();
-
-		mainTab = new MainTab(this);
-		
-		
+//		mainTab = new MainTab(this);
 		
 		this.setVisible(true);
 		
-		api.Register("001","과목1", "공ㅇㅇ","전필","50");
-		api.Register("002","과목2", "공ㅇㅇ","전필","50");
-		api.Register("003","과목3", "공ㅇㅇ","전필","50");
-		api.Register("004","과목4", "공ㅇㅇ","전필","50");
-		api.Register("005","과목5", "공ㅇㅇ","전필","50");
+//String subnumber, String number, String grade, String gradeint, String realgrade, String day, String late, String absent
 		}
-	
-	
 	
 	private void start() {
 		this.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
-		
 		instance.start();
 	}
 	

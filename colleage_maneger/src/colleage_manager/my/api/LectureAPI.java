@@ -17,28 +17,31 @@ import colleage_manager.my.model.Lecture;
 import colleage_manager.my.model.Student;
 import colleage_manager.my.model.Subject;
 
-public class LectureAPI {
-	private static final String PERSISTENCE_UNIT_NAME = "h2";
-	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	protected static EntityManager em = factory.createEntityManager();
+public class LectureAPI extends BaseRepoAPI {
+//	private static final String PERSISTENCE_UNIT_NAME = "h2";
+//	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+//	protected static EntityManager em = factory.createEntityManager();
 
+	private static LectureAPI instance;
+
+	public static LectureAPI getInstance() {
+		if (instance == null) {
+			instance = new LectureAPI();
+		}
+		return instance;
+	}
 	
-	public boolean Register(String subnumber, String number, String grade, int gradeint, int realgrade, int day, int late, int absent ) {
+	public boolean Register(String subnumber,String subname,String lecturename,String name, String grade, String day ) {
 		try {
 			
-		//	Subject subject = new Subject();
-			Lecture lecture = new Lecture();
-		//	Student student = new Student();
 			
-			lecture.setNumber(number);
+			Lecture lecture = new Lecture();
+			
 			lecture.setSubNumber(subnumber);
-		
-		lecture.setGrade(grade);
-		lecture.setGradeint(gradeint);
-		lecture.setRealGrade(realgrade);
-		lecture.setDay(day);
-		lecture.setLate(late);
-		lecture.setAbsent(absent);
+			lecture.setName(name);
+			lecture.setLectureName(lecturename);
+			lecture.setGrade(grade);
+			lecture.setDay(day);
 
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
@@ -52,35 +55,61 @@ public class LectureAPI {
 		}
 		return true;
 	}
-		
-	public boolean GradeAdd(String subnumber, String number, String grade, int gradeint, int realgrade) {
-		try {
-			
-			Subject subject = new Subject();
-			Lecture lecture = new Lecture();
-			Student student = new Student();
-			
-		student.setNumber(number);
+	
+	public void Delete(String subnumber) {
+
+		Lecture subject = em.find(Lecture.class, subnumber);
 		subject.setSubNumber(subnumber);
 		
-		lecture.setGrade(grade);
-		lecture.setGradeint(gradeint);
-		lecture.setRealGrade(realgrade);
-
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
 			
-			em.persist(lecture);
+			em.remove(subject);
 			
 			transaction.commit();
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return true;
-	}
+		
+	}	
 	
-	public List<Subject> readAll() {
-		return null;
+	public Lecture Read(String subnumber) {
+
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+
+		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
+		Root<Lecture> from = cQuery.from(Lecture.class);
+		Predicate where1 = criteriaBuilder.equal(from.get("subnumber"), subnumber);
+		
+
+		Predicate whereFinal = criteriaBuilder.and(where1);
+		cQuery.where(whereFinal);
+		
+		Query query = em.createQuery(cQuery);
+		List<Lecture> resultList = query.getResultList();
+			
+		if (resultList.size() == 1)
+			return resultList.get(0);
+		else
+			return null;
+	}	
+	
+	
+	
+	public List<Lecture> readAll() {
+		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+
+		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
+		Root<Lecture> from = cQuery.from(Lecture.class);
+		
+		Query query = em.createQuery(cQuery);
+		List<Lecture> resultList = query.getResultList();
+			
+//			for(int i = 0; i < resultList.size(); i++ ) {
+//				
+//			}
+		
+			return resultList;
+		
+	}
+	public Lecture getLecture(String number) {
+		return em.find(Lecture.class, number);
 	}
 }

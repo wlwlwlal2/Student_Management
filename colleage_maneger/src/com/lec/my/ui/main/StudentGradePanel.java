@@ -62,7 +62,7 @@ public class StudentGradePanel extends JPanel {
 	private HashMap<String, JTextField> infoMap = new HashMap<String, JTextField>();
 	private JButton loadBtn;
 	private JButton logout;
-	private CommonAPI api = new CommonAPI();
+	private CommonAPI api = CommonAPI.getInstance();
 	private CardLayout layout = new CardLayout();
 	private SwingMain frame;
 	

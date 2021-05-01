@@ -15,11 +15,19 @@ import javax.persistence.criteria.Root;
 import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Student;
 
-public class CommonAPI {
-	private static final String PERSISTENCE_UNIT_NAME = "h2";
-	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	protected static EntityManager em = factory.createEntityManager();
+public class CommonAPI extends BaseRepoAPI {
+//	private static final String PERSISTENCE_UNIT_NAME = "h2";
+//	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+//	protected static EntityManager em = factory.createEntityManager();
 	
+	private static CommonAPI instance;
+
+	public static CommonAPI getInstance() {
+		if (instance == null) {
+			instance = new CommonAPI();
+		}
+		return instance;
+	}
 	
 	private static int i = 0;
 	

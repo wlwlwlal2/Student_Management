@@ -5,7 +5,6 @@ import javax.persistence.EntityTransaction;
 import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Student;
 
-
 //	public int login(int studentNumber, String passward) {
 //		
 //		// 로그인 : 학번 , 비밀번호 
@@ -76,31 +75,35 @@ import colleage_manager.my.model.Student;
 //		
 //		return 0;
 //	}
-	
-	public class StudentAPI extends CommonAPI {
-		@Override
-		public boolean Register(String role, String number, String password) {
-			try {
-				Common user = new Common();
-				user.setNumber(number);
-				user.setPassword(password);
-				user.setRole("학생");
 
-				EntityTransaction transaction = em.getTransaction();
-				transaction.begin();
-				em.persist(user);
-				transaction.commit();
-			} catch (Exception e) {
-				e.printStackTrace();
-				return false;
-			}
-			return true;
+public class StudentAPI extends CommonAPI {
+	private static StudentAPI instance;
 
-	
-}
-		
-
-	
-		
-		
+	public static StudentAPI getInstance() {
+		if (instance == null) {
+			instance = new StudentAPI();
+		}
+		return instance;
 	}
+	
+	@Override
+	public boolean Register(String role, String number, String password) {
+		try {
+			Common user = new Common();
+			user.setNumber(number);
+			user.setPassword(password);
+			user.setRole("학생");
+
+			EntityTransaction transaction = em.getTransaction();
+			transaction.begin();
+			em.persist(user);
+			transaction.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return true;
+
+	}
+
+}

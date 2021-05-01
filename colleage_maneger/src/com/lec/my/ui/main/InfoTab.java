@@ -17,7 +17,7 @@ public class InfoTab extends JTabbedPane {
 	
 	public InfoTab(SwingMain frame) {
 		
-		CommonAPI api = new CommonAPI();
+		CommonAPI api = CommonAPI.getInstance();
 		String role = null;
 		Common user = null;
 		UserAuth auth = UserAuth.getInstance();

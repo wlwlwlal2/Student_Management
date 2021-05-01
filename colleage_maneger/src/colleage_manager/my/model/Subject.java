@@ -15,6 +15,7 @@ public class Subject {
 	private String subnumber;
 	@Column
 	private String subname;
+	
 	@Column
 	private String professor;
 	@Column

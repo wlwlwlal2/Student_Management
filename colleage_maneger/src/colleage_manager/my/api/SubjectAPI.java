@@ -1,5 +1,6 @@
 package colleage_manager.my.api;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,27 +17,33 @@ import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Student;
 import colleage_manager.my.model.Subject;
 
-public class SubjectAPI {
-	private static final String PERSISTENCE_UNIT_NAME = "h2";
-	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
-	protected static EntityManager em = factory.createEntityManager();
+public class SubjectAPI extends BaseRepoAPI {
+//	private static final String PERSISTENCE_UNIT_NAME = "h2";
+//	private static final EntityManagerFactory factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);
+//	protected static EntityManager em = factory.createEntityManager();
 
-	
-	public boolean Register(String subnumber, String lecturename, String professor, String lectureType, String needday) {
+	private static SubjectAPI instance;
+
+	public static SubjectAPI getInstance() {
+		if (instance == null) {
+			instance = new SubjectAPI();
+		}
+		return instance;
+	}
+
+	public boolean Register(String subnumber, String lecturename, String professor, String lectureType,
+			String needday) {
 		try {
 			Subject subject = new Subject();
-			
-		subject.setSubNumber(subnumber);
-		subject.setSubName(lecturename);
-		subject.setProfessor(professor);
-		subject.setLectureType(lectureType);
-		subject.setNeedDay(needday);
+			subject.setSubNumber(subnumber);
+			subject.setSubName(lecturename);
+			subject.setProfessor(professor);
+			subject.setLectureType(lectureType);
+			subject.setNeedDay(needday);
 
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
-			
 			em.persist(subject);
-			
 			transaction.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -44,46 +51,45 @@ public class SubjectAPI {
 		}
 		return true;
 	}
-		
+
 	public boolean InfoUpdate(String subnumber, String subname, String professor, String lectureType, String needday) {
 
 		try {
-			
+
 			Subject subject = em.find(Subject.class, subnumber);
 
-		EntityTransaction transaction = em.getTransaction();
-		transaction.begin();
-		
-		//subject.setSubNumber(subnumber);
-		subject.setSubName(subname);
-		subject.setProfessor(professor);
-		subject.setLectureType(lectureType);
-		subject.setNeedDay(needday);
-		
-		
-		transaction.commit();
-		
+			EntityTransaction transaction = em.getTransaction();
+			transaction.begin();
+
+			// subject.setSubNumber(subnumber);
+			subject.setSubName(subname);
+			subject.setProfessor(professor);
+			subject.setLectureType(lectureType);
+			subject.setNeedDay(needday);
+
+			transaction.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
 		return true;
 	}
-	
+
 	public void Delete(String subnumber) {
 
 		Subject subject = em.find(Subject.class, subnumber);
 		subject.setSubNumber(subnumber);
-		
-			EntityTransaction transaction = em.getTransaction();
-			transaction.begin();
-			
-			em.remove(subject);
-			
-			transaction.commit();
-		
-	}	
-	
+
+		EntityTransaction transaction = em.getTransaction();
+		transaction.begin();
+
+		em.remove(subject);
+
+		transaction.commit();
+
+	}
+
 	public Subject Read(String subnumber) {
 
 		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
@@ -91,40 +97,46 @@ public class SubjectAPI {
 		CriteriaQuery<Subject> cQuery = criteriaBuilder.createQuery(Subject.class);
 		Root<Subject> from = cQuery.from(Subject.class);
 		Predicate where1 = criteriaBuilder.equal(from.get("subnumber"), subnumber);
-		
 
 		Predicate whereFinal = criteriaBuilder.and(where1);
 		cQuery.where(whereFinal);
-		
+
 		Query query = em.createQuery(cQuery);
 		List<Subject> resultList = query.getResultList();
-			
+
 		if (resultList.size() == 1)
 			return resultList.get(0);
 		else
 			return null;
-	}	
-	
-	
-	
-	public List<Subject> readAll() {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-
-		CriteriaQuery<Subject> cQuery = criteriaBuilder.createQuery(Subject.class);
-		Root<Subject> from = cQuery.from(Subject.class);
-		
-		Query query = em.createQuery(cQuery);
-		List<Subject> resultList = query.getResultList();
-			
-//			for(int i = 0; i < resultList.size(); i++ ) {
-//				
-//			}
-		
-			return resultList;
-		
 	}
-	
-	
+
+	public List<Subject> readAll() {
+		CriteriaQuery<Subject> query;
+		{
+			CriteriaBuilder builder = em.getCriteriaBuilder();
+			query = builder.createQuery(Subject.class);
+			query.from(Subject.class);
+		}
+
+		List<Subject> result = em.createQuery(query).getResultList();
+
+		if (result.size() > 0)
+			return result;
+		else
+			return new ArrayList<Subject>();
+		
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//
+//		CriteriaQuery<Subject> cQuery = criteriaBuilder.createQuery(Subject.class);
+//		cQuery.from(Subject.class);
+//
+//		Query query = em.createQuery(cQuery);
+//		List<Subject> resultList = query.getResultList();
+//
+//		return resultList;
+
+	}
+
 	public Subject getSubject(String subnumber) {
 		return em.find(Subject.class, subnumber);
 	}

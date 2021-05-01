@@ -13,6 +13,15 @@ import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Student;
 
 public class ProfessorAPI extends CommonAPI {
+	private static ProfessorAPI instance;
+
+	public static ProfessorAPI getInstance() {
+		if (instance == null) {
+			instance = new ProfessorAPI();
+		}
+		return instance;
+	}
+	
 	public boolean Register(String role, String number, String password) {
 		try {
 			Common user = new Common();

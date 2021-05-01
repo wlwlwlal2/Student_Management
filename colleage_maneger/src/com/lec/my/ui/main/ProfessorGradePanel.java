@@ -72,9 +72,9 @@ public class ProfessorGradePanel extends JPanel {
 	private JButton loadBtn;	
 	private JButton logout;
 	private JButton update;
-	private CommonAPI api = new CommonAPI();
-	private StudentAPI sapi = new StudentAPI();
-	private LectureAPI lapi = new LectureAPI();
+	private CommonAPI api = CommonAPI.getInstance();
+	private StudentAPI sapi = StudentAPI.getInstance();
+	private LectureAPI lapi = LectureAPI.getInstance();
 	private CardLayout layout = new CardLayout();
 	private SwingMain frame;
 	

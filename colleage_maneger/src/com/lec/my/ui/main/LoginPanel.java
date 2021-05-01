@@ -15,7 +15,7 @@ import colleage_manager.my.model.Common;
 import colleage_manager.my.swing.SwingMain;
 
 public class LoginPanel extends JPanel {
-	private CommonAPI api = new CommonAPI();
+	private CommonAPI api = CommonAPI.getInstance();
 	private SwingMain frame;
 	private String role;
 	

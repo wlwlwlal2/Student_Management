@@ -16,17 +16,18 @@ public class Lecture {
 	@Column
 	private String number;
 	@Column
+	private String subname;
+	@Column
+	private String lecturename;
+	@Column
+	private String name;
+	@Column
 	private String grade;
+	
+	
 	@Column
-	private int gradeint;
-	@Column
-	private int realgrade;
-	@Column
-	private int day;
-	@Column
-	private int late;
-	@Column
-	private int absent;
+	private String day;
+	
 
 	public String getSubNumber() {
 		return subnumber;
@@ -34,12 +35,30 @@ public class Lecture {
 	public void setSubNumber(String subnumber) {
 		this.subnumber = subnumber;
 	}
-	
+	public String getSubname() {
+		return subname;
+	}
+	public void setSubname(String subname) {
+		this.subname = subname;
+	}
 	public String getNumber() {
 		return number;
 	}
 	public void setNumber(String number) {
 		this.number = number;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getLectureName() {
+		return lecturename;
+	}
+	public void setLectureName(String lecturename) {
+		this.lecturename = lecturename;
 	}
 	
 	public String getGrade() {
@@ -48,35 +67,12 @@ public class Lecture {
 	public void setGrade(String grade) {
 		this.grade = grade;
 	}
-	public int getGradeint() {
-		return gradeint;
-	}
-	public void setGradeint(int gradeint) {
-		this.gradeint = gradeint;
-	}
-	public int getRealGrade() {
-		return realgrade;
-	}
-	public void setRealGrade(int realgrade) {
-		this.realgrade = realgrade;
-		
-	}
-	public int getDay() {
+	
+	public String getDay() {
 		return day;
 	}
-	public void setDay(int day) {
+	public void setDay(String day) {
 		this.day = day;
 	}
-	public int getLate() {
-		return late;
-	}
-	public void setLate(int late) {
-		this.late = late;
-	}
-	public int getAbsent() {
-		return absent;
-	}
-	public void setAbsent(int absent) {
-		this.absent = absent;
-	}
+	
 }

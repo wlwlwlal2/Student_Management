@@ -75,7 +75,7 @@ public class SubjectInformationPanel extends JPanel {
 	private JButton check;
 	private JButton addBtn;
 	private JButton deleteBtn;
-	private SubjectAPI api = new SubjectAPI();
+	private SubjectAPI api = SubjectAPI.getInstance();
 	private CardLayout layout = new CardLayout();
 	private SwingMain frame;
 	

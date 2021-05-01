@@ -66,7 +66,7 @@ public class StudentInformationPanel extends JPanel {
 	private JButton loadBtn;
 	private JButton check;
 	private JButton logout;
-	private CommonAPI api = new CommonAPI();
+	private CommonAPI api = CommonAPI.getInstance();
 	private CardLayout layout = new CardLayout();
 	private SwingMain frame;
 	

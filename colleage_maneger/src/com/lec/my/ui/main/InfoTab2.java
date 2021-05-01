@@ -16,7 +16,7 @@ import colleage_manager.my.swing.SwingMain;
 
 public class InfoTab2 extends JTabbedPane {
 	
-	CommonAPI api = new CommonAPI();
+	CommonAPI api = CommonAPI.getInstance();
 	
 	public InfoTab2(SwingMain frame) {
 		

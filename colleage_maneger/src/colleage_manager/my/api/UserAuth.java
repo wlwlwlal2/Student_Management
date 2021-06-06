@@ -1,7 +1,7 @@
 package colleage_manager.my.api;
 
 import colleage_manager.my.model.Common;
-import colleage_manager.my.model.Student;
+
 
 public class UserAuth {
 	private static UserAuth instance;
@@ -22,17 +22,17 @@ public class UserAuth {
 		this.loginUser = common;
 		
 		
-		switch(common.getRole()) {
-		case "학생": 
-			loginAPI = StudentAPI.getInstance(); break;
-		case "교수": 
-			loginAPI = ProfessorAPI.getInstance(); break;
-//		case "admin": 
-//			CommonAPI = new AdminAPI(); break;
-//		case "employee": 
-//			CommonAPI = new EmployeeAPI(); break;
-		default: break;
-		}
+//		switch(common.getRole()) {
+//		case "학생": 
+//			loginAPI = StudentAPI.getInstance(); break;
+//		case "교수": 
+//			loginAPI = ProfessorAPI.getInstance(); break;
+////		case "admin": 
+////			CommonAPI = new AdminAPI(); break;
+////		case "employee": 
+////			CommonAPI = new EmployeeAPI(); break;
+//		default: break;
+//		}
 	}
 	
 	public boolean isLogin() {
@@ -54,6 +54,6 @@ public class UserAuth {
 	
 	public void logout() {
 		loginUser = null;
-		loginAPI = null;
+		
 	}
 }

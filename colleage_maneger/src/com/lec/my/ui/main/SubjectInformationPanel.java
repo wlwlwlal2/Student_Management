@@ -120,19 +120,21 @@ public class SubjectInformationPanel extends JPanel {
 	
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		List<Subject> mylist = api.readAll();
 		
-		dlm.clear();
-		for(int i = 0; i < mylist.size(); i++) {
-			Subject subject = mylist.get(i);
-			String data = subject.getSubName() + "(" + subject.getSubNumber() + ")";
-			 
-			 dlm.addElement(data);
-			 
+			 ListUpdate();
 		}
 		
-		
-		
+		private void ListUpdate() {
+			
+			List<Subject> mylist = api.readAll();
+			
+			dlm.clear();
+			for(int i = 0; i < mylist.size(); i++) {
+				Subject subject = mylist.get(i);
+				String data = subject.getSubName() + "(" + subject.getSubNumber() + ")";
+				 
+				 dlm.addElement(data);
+			}
 		
 			
 	//	((ListSelectionModel) list).setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -193,6 +195,8 @@ public class SubjectInformationPanel extends JPanel {
 				JOptionPane op1 = new JOptionPane();
 				if (result2 != null) {
                 	op1.showMessageDialog(null, subnumber + " 과목 추가 성공");
+                	 ListUpdate();
+                	 
                 	
     			} else {
     				op1.showMessageDialog(null, subnumber + " 과목 추가 실패");   
@@ -213,7 +217,7 @@ public class SubjectInformationPanel extends JPanel {
 				JOptionPane op1 = new JOptionPane();
 				if (result2 == null) {
                 	op1.showMessageDialog(null, subnumber + " 과목 삭제 성공");
-                	
+                	ListUpdate();
     			} else {
     				op1.showMessageDialog(null, subnumber + " 과목 추가 실패");   
     			}
@@ -241,7 +245,7 @@ public class SubjectInformationPanel extends JPanel {
 				JOptionPane op1 = new JOptionPane();
 				if (result2 != null) {
                 	op1.showMessageDialog(null, subnumber + " 정보 수정 성공");
-                	
+                	ListUpdate();
     			} else {
     				op1.showMessageDialog(null, subnumber + " 정보 수정 실패");   
     			}

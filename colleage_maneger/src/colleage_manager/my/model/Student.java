@@ -1,5 +1,7 @@
 package colleage_manager.my.model;
 
+import java.util.ArrayList;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,16 +20,17 @@ public class Student {
 	@Column
 	private String grade;
 	@Column
-	private int realGrade;
+	private String realGrade;
 	@Column
-	private int maxAttendance; // 과목 출석시간
+	private String maxAttendance; // 과목 출석시간
 	@Column
-	private int attendance; // 출석시간
+	private String attendance; // 출석시간
 	@Column
-	private int lateness; // 지각
+	private String lateness; // 지각
 	@Column
-	private int absence; // 결석
+	private String absence; // 결석
 
+	private ArrayList lectureList = new ArrayList();
 	
 	public String getNumber() {
 		return number;
@@ -36,45 +39,46 @@ public class Student {
 		this.number = number;
 	}
 	
-	public String getSubject() {
-		return subject;
+	public ArrayList getLectureList() {
+		return lectureList;
 }
-	public void setSubject(String subject) {
-		this.subject = subject;
+	public void setLectureList(String lectureNumber) {
+		lectureList.add(lectureNumber);
 }
 	
-	public String getGrade() {
+	public String getGrade(String lecturenumber) {
+		
 		return grade;
 }
-	public void setGrade(String Grade) {
+	public void setGrade(String lecturenumber, String Grade) {
 		this.grade = grade;
 }
 	
-	public int getRealGrade() {
+	public String getRealGrade() {
 		return realGrade;
 	}
 	public void setRealGrade() {
 		this.realGrade = realGrade;
 	}
-	public int getMaxAttendance() {
+	public String getMaxAttendance() {
 		return maxAttendance;
 	}
 	public void setMaxAttendance() {
 		this.maxAttendance = maxAttendance;
 	}
-	public int getAttendancee() {
+	public String getAttendancee() {
 		return attendance;
 	}
 	public void setAttendance() {
 		this.attendance = attendance;
 	}
-	public int getLateness() {
+	public String getLateness() {
 		return lateness;
 	}
 	public void setLateness() {
 		this.lateness = lateness;
 	}
-	public int getAbsence() {
+	public String getAbsence() {
 		return absence;
 	}
 	public void setAbsence() {

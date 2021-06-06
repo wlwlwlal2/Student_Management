@@ -14,7 +14,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import colleage_manager.my.model.Common;
-import colleage_manager.my.model.Student;
+
 import colleage_manager.my.model.Subject;
 
 public class SubjectAPI extends BaseRepoAPI {
@@ -124,7 +124,7 @@ public class SubjectAPI extends BaseRepoAPI {
 			return result;
 		else
 			return new ArrayList<Subject>();
-		
+
 //		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
 //
 //		CriteriaQuery<Subject> cQuery = criteriaBuilder.createQuery(Subject.class);

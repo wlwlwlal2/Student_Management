@@ -40,26 +40,7 @@ public class ProfessorAPI extends CommonAPI {
 		}
 		return true;
 }
-	public Common Object(String number) {
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-
-		CriteriaQuery<Common> cQuery = criteriaBuilder.createQuery(Common.class);
-		CriteriaQuery<Student> sQuery = criteriaBuilder.createQuery(Student.class);
-		Root<Common> from = cQuery.from(Common.class);
-		Predicate where1 = criteriaBuilder.equal(from.get("number"), number);
-		
-		cQuery.where(where1);
-		
-		Query query = em.createQuery(sQuery);
-		
-		List<Common> resultList = query.getResultList();
-		
-		if (resultList.size() == 1)
-			return resultList.get(0);
-		else
-			return null;
-		
-	}
+	
 	
 }
 

@@ -8,7 +8,7 @@ import javax.persistence.Table;
 @Entity
 @Table
 public class Common {
-	
+
 	@Id
 	@Column
 	private String number;
@@ -18,7 +18,7 @@ public class Common {
 	@Column
 	private String name;
 	@Column
-	private int classNumber;
+	private String classNumber;
 	// 학과별로 존재하는 학과코드
 	@Column
 	private String birth;
@@ -31,98 +31,77 @@ public class Common {
 	@Column
 	private String address;
 	@Column
-	private String family;
-	@Column
-	private String lectureName;
-	@Column
-	private String lectureLocate;
-	@Column
 	private String role;
-	
+
 	public String getNumber() {
 		return number;
 	}
+
 	public void setNumber(String number) {
 		this.number = number;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
 	public String getPassword() {
 		return password;
 	}
+
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
-	public int getClassNumber() {
+
+	public String getClassNumber() {
 		return classNumber;
 	}
-	public void setClassNumber(int classNumber) {
+
+	public void setClassNumber(String classNumber) {
 		this.classNumber = classNumber;
 	}
-	
+
 	public String getBirth() {
 		return birth;
 	}
+
 	public void setBirth(String birth) {
 		this.birth = birth;
 	}
-	
+
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
+
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
 	public String getAddress() {
 		return address;
 	}
+
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	
-	public String getFamily() {
-		return family;
-	}
-	public void setFamily(String family) {
-		this.family = family;
-	}
-	
-	public String getLectureName() {
-		return lectureName;
-	}
-	public void setLectureName(String lectureName) {
-		this.lectureName = lectureName;
-	}
-	
-	public String getLectureLocate() {
-		return lectureLocate;
-	}
-	public void setLectureLocate(String lectureLocate) {
-		this.lectureLocate = lectureLocate;
-	}
-	
+
 	public String getRole() {
 		return role;
 	}
-	
+
 	public void setRole(String role) {
 		this.role = role;
 	}
-	
-//	@Override
-//	public void toString
 }

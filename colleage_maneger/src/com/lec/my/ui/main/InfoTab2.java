@@ -8,6 +8,8 @@ import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 
 import colleage_manager.my.api.CommonAPI;
 import colleage_manager.my.api.UserAuth;
@@ -39,15 +41,19 @@ public class InfoTab2 extends JTabbedPane {
 //		addTab("학생 정보", new StudentInformationPanel(frame));
 		
 		
-		
-	
-		 
+		ProfessorLectureInformationPanel lecturePanel = new ProfessorLectureInformationPanel(frame);
 	//	addTab("학생 정보", new StudentInformationPanel(frame));
 		addTab("교수 정보", new ProfessorInformationPanel(frame));
-		addTab("성적", new ProfessorGradePanel(frame));
+	//	addTab("성적", new ProfessorGradePanel(frame));
 		addTab("과목", new SubjectInformationPanel(frame));
-		addTab("강의", new LectureInformationPanel(frame));
+		addTab("강의", lecturePanel);
 		
+		this.addChangeListener(new ChangeListener() {
+			@Override
+			public void stateChanged(ChangeEvent e) {
+				lecturePanel.tabChanged();
+			}
+	    });
 	}
 	
 	

@@ -36,6 +36,7 @@ public class SwingMain extends JFrame {
 	 */
 	
 	// Database API 코드 이동 필요
+	private CommonAPI capi = CommonAPI.getInstance();
 	private SubjectAPI api = SubjectAPI.getInstance();
 	private LectureAPI lapi = LectureAPI.getInstance();
 	
@@ -52,12 +53,22 @@ public class SwingMain extends JFrame {
 	private final static String ProfessorTab = "PROFESSOR";
 	
 	private void initDB() {
+		capi.Register("학생" ,"11", "11");
+		capi.Register("학생" ,"12", "11");
+		capi.Register("학생" ,"13", "11");
+		
 		api.Register("001","과목1", "공ㅇㅇ","전필","50");
 		api.Register("002","과목2", "공ㅇㅇ","전필","50");
 		api.Register("003","과목3", "공ㅇㅇ","전필","50");
 		api.Register("004","과목4", "공ㅇㅇ","전필","50");
 		api.Register("005","과목5", "공ㅇㅇ","전필","50");
-		lapi.Register("005","과목5","강의1","이ㅇㅇ","60","60");
+		lapi.Register("001","005","과목5","강의1","이ㅇㅇ","60","60");
+		
+		lapi.AddListener("001","11");
+		lapi.AddListener("001","12");
+		lapi.AddListener("001","13");
+		
+		
 	}
 	
 	@SuppressWarnings("unused")
@@ -106,5 +117,8 @@ public class SwingMain extends JFrame {
 		
 		layout.show(this.getContentPane(), ProfessorTab);
 }
+	public void changeMainTab() {;
 	
+	layout.show(this.getContentPane(), MainTab);
+}
 }

@@ -1,33 +1,44 @@
 package colleage_manager.my.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "student")
 public class Student {
 
 	
 	@Id
-	@Column
+	@OneToOne(mappedBy="student")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private String number;
-	@Column
+	
+	@OneToMany(mappedBy = "student")
+	private Set<LectureHistory> history = new HashSet<LectureHistory>();
+	
+	@Column(name = "student_code")
 	private String subject;
-	@Column
+	
+	@Column(name = "student_grade")
 	private String grade;
-	@Column
+	@Column(name = "student_realGrade")
 	private String realGrade;
-	@Column
+	@Column(name = "student_maxAttendance")
 	private String maxAttendance; // 과목 출석시간
-	@Column
+	@Column(name = "student_attendancee")
 	private String attendance; // 출석시간
-	@Column
+	@Column(name = "student_lateness")
 	private String lateness; // 지각
-	@Column
+	@Column(name = "student_absence")
 	private String absence; // 결석
 
 	private ArrayList lectureList = new ArrayList();

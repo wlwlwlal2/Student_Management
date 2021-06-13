@@ -13,7 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import colleage_manager.my.model.Common;
-import colleage_manager.my.model.Student;
+import colleage_manager.my.model.StudentID;
 
 public class CommonAPI extends BaseRepoAPI {
 //	private static final String PERSISTENCE_UNIT_NAME = "h2";
@@ -29,8 +29,6 @@ public class CommonAPI extends BaseRepoAPI {
 		return instance;
 	}
 
-	private static int i = 0;
-
 	public boolean Register(String role, String number, String password) {
 		try {
 			Common common = new Common();
@@ -43,9 +41,9 @@ public class CommonAPI extends BaseRepoAPI {
 			transaction.begin();
 
 			if (common.getRole() == "ÇÐ»ý") {
-				Student student = new Student();
+				StudentID student = new StudentID();
 
-				student.setNumber(number);
+				student.setStudent(number);
 
 				em.persist(student);
 			}

@@ -1,36 +1,47 @@
 package colleage_manager.my.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "common")
 public class Common {
 
 	@Id
-	@Column
+	@OneToOne(mappedBy="common")
+	@JoinColumn(name = "id", referencedColumnName = "id")
 	private String number;
 	// 학생의 경우엔 학번, 교수의 경우엔 교수번호
-	@Column
+	
+	@OneToMany(mappedBy = "common")
+	private Set<LectureHistory> history = new HashSet<LectureHistory>();
+	
+	@Column(name = "password")
 	private String password;
-	@Column
+	@Column(name = "name")
 	private String name;
-	@Column
+	@Column(name = "classNumber")
 	private String classNumber;
 	// 학과별로 존재하는 학과코드
-	@Column
+	@Column(name = "birth")
 	private String birth;
 	// 생년월일, ex) 20201205
-	@Column
+	@Column(name = "phoneNumber")
 	private String phoneNumber;
 	// 휴대폰 번호
-	@Column
+	@Column(name = "email")
 	private String email;
-	@Column
+	@Column(name = "address")
 	private String address;
-	@Column
+	@Column(name = "role")
 	private String role;
 
 	public String getNumber() {

@@ -1,32 +1,51 @@
 package colleage_manager.my.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "lecture")
 public class Lecture {
 
 	@Id
-	@Column
+	@Column(name = "lecturenumber")
 	private String lecturenumber; // 강의코드
-	@Column
-	private String subnumber; // 과목코드
-	@Column
-	private String subname; // 과목명
-	@Column
-	private String lecturename; // 강의명
-	@Column
-	private String name; // 교수이름
-	@Column
-	private String grade; // 점수
-	@Column
-	private String day; // 요구출석일
 	
+	@OneToMany(mappedBy="lecture")
+	private Set<LectureHistory> history = new HashSet<LectureHistory>();
+	
+	@ManyToOne
+	@JoinColumn(name = "subject_code", insertable = false, updatable = false)
+	private String subnumber; // 과목코드
+	
+	@ManyToOne
+	@JoinColumn(name = "pronumber", insertable = false, updatable = false)
+	private String pronumber; // 교수 번호
+
+	@Column(name = "subname")
+	private String subname; // 과목명
+	
+	@Column(name = "lecturename")
+	private String lecturename; // 강의명
+	
+	@Column(name = "name")
+	private String name; // 교수이름
+	
+	@Column(name = "grade")
+	private String grade; // 점수
+	
+	@Column(name = "day")
+	private String day; // 요구출석일
+	@Column(name = "listeningStudent")
 	private ArrayList listeningStudent = new ArrayList();
 
 	public String getSubNumber() {
@@ -106,3 +125,88 @@ public class Lecture {
 		return subname;
 	}
 }
+
+//package colleage_manager.my.model;
+//
+//import java.util.HashMap;
+//import java.util.HashSet;
+//import java.util.List;
+//import java.util.Map;
+//import java.util.Set;
+//
+//import javax.persistence.Column;
+//import javax.persistence.Convert;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
+//import javax.persistence.JoinColumn;
+//import javax.persistence.ManyToOne;
+//import javax.persistence.OneToMany;
+//import javax.persistence.Table;
+//
+//@Entity
+//@Table(name = "lecture")
+//public class Lecture {
+//	@Id
+//	@Column(name = "code")
+//	private String code; // 강의 코드
+//
+//	@OneToMany(mappedBy="lecture")
+//	private Set<LectureHistory> history = new HashSet<LectureHistory>();
+//	
+//
+//	@ManyToOne
+//	@JoinColumn(name = "subject_code", insertable = false, updatable = false)
+//	private Subject subject; // 과목 코드
+//
+//	@Column(name = "description")
+//	private String description; // 강의 내용
+//
+//
+//	@Column(name = "year")
+//	private int year; // 강의 년도
+//	
+//	@Column(name = "semester")
+//	private int semester; // 강의 학기
+//	
+//	public String getCode() {
+//		return code;
+//	}
+//
+//	public void setCode(String code) {
+//		this.code = code;
+//	}
+//
+//
+//	public Subject getSubject() {
+//		return subject;
+//	}
+//
+//	public void setSubject(Subject subject) {
+//		this.subject = subject;
+//	}
+//
+//	public String getDescription() {
+//		return description;
+//	}
+//
+//	public void setDescription(String description) {
+//		this.description = description;
+//	}
+//
+//
+//	public int getYear() {
+//		return year;
+//	}
+//
+//	public void setYear(int year) {
+//		this.year = year;
+//	}
+//
+//	public int getSemester() {
+//		return semester;
+//	}
+//
+//	public void setSemester(int semester) {
+//		this.semester = semester;
+//	}
+//}

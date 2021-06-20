@@ -22,12 +22,12 @@ public class LectureHistory implements Serializable {
 	
 	@ManyToOne
 	@MapsId("lecture")
-	@JoinColumn(name = "lecture_code", referencedColumnName = "code")
+	@JoinColumn(name = "lecture_code", referencedColumnName = "lecture_number")
 	private Lecture lecture; // 강의 코드
 
 	@ManyToOne
 	@MapsId("student")
-	@JoinColumn(name = "student_id", referencedColumnName = "id")
+	@JoinColumn(name = "student_id", referencedColumnName = "number")
 	private Student student; // 학생 번호
 	
 	@Column(name = "grade")

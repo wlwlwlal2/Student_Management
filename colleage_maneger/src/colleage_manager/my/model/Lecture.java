@@ -17,24 +17,26 @@ import javax.persistence.Table;
 public class Lecture {
 
 	@Id
-	@Column(name = "lecturenumber")
-	private String lecturenumber; // 강의코드
+	@Column(name = "lecture_number")
+	private String lectureNumber; // 강의코드
 	
 	@OneToMany(mappedBy="lecture")
 	private Set<LectureHistory> history = new HashSet<LectureHistory>();
 	
 	@ManyToOne
 	@JoinColumn(name = "subject_code", insertable = false, updatable = false)
-	private String subnumber; // 과목코드
+	private Subject subject; // 과목코드
 	
-	@ManyToOne
-	@JoinColumn(name = "pronumber", insertable = false, updatable = false)
-	private String pronumber; // 교수 번호
+	@Column(name = "sub_number")
+	private String subnumber; // 기존 코드 에러떠서 넣음
+	
+	@Column(name = "pro_number")
+	private String proNumber; // 교수 번호
 
-	@Column(name = "subname")
+	@Column(name = "sub_name")
 	private String subname; // 과목명
 	
-	@Column(name = "lecturename")
+	@Column(name = "lecture_name")
 	private String lecturename; // 강의명
 	
 	@Column(name = "name")
@@ -45,8 +47,17 @@ public class Lecture {
 	
 	@Column(name = "day")
 	private String day; // 요구출석일
-	@Column(name = "listeningStudent")
+	
+	@Column(name = "listening_student")
 	private ArrayList listeningStudent = new ArrayList();
+
+	public Subject getSubject() {
+		return subject;
+	}
+
+	public void setSubject(Subject subnumber) {
+		this.subject = subnumber;
+	}
 
 	public String getSubNumber() {
 		return subnumber;
@@ -55,13 +66,13 @@ public class Lecture {
 	public void setSubNumber(String subnumber) {
 		this.subnumber = subnumber;
 	}
-
+	
 	public String getLectureNumber() {
-		return lecturenumber;
+		return lectureNumber;
 	}
 
 	public void setLectureNumber(String lecturenumber) {
-		this.lecturenumber = lecturenumber;
+		this.lectureNumber = lecturenumber;
 	}
 
 	public String getSubname() {

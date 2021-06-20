@@ -1,5 +1,6 @@
 package colleage_manager.my.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,20 +15,22 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "student")
-public class Student {
+public class Student implements Serializable {
 
 	
 	@Id
-	@OneToOne(mappedBy="student")
-	@JoinColumn(name = "id", referencedColumnName = "id")
-	private String number;
+	@OneToOne
+	@JoinColumn(name = "number", referencedColumnName = "number")
+	private Common common;
 	
 	@OneToMany(mappedBy = "student")
 	private Set<LectureHistory> history = new HashSet<LectureHistory>();
 	
+	@Column(name = "student_number")
+	private String number; // 기존 코드 에러떠서 넣음
+	
 	@Column(name = "student_code")
 	private String subject;
-	
 	@Column(name = "student_grade")
 	private String grade;
 	@Column(name = "student_realGrade")
@@ -40,8 +43,15 @@ public class Student {
 	private String lateness; // 지각
 	@Column(name = "student_absence")
 	private String absence; // 결석
-
+	@Column(name = "student_lectureList")
 	private ArrayList lectureList = new ArrayList();
+	
+	public Common getCommon() {
+		return common;
+	}
+	public void setCommon(Common common) {
+		this.common = common;
+	}
 	
 	public String getNumber() {
 		return number;

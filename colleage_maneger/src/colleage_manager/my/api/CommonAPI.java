@@ -13,6 +13,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import colleage_manager.my.model.Common;
+import colleage_manager.my.model.Student;
 import colleage_manager.my.model.StudentID;
 
 public class CommonAPI extends BaseRepoAPI {
@@ -41,11 +42,11 @@ public class CommonAPI extends BaseRepoAPI {
 			transaction.begin();
 
 			if (common.getRole() == "학생") {
-				StudentID student = new StudentID();
+				Student student = new Student();
 
-				student.setStudent(number);
+				student.setNumber(number);
 
-				em.persist(student);
+				//em.persist(student); // 여기가 문제임
 			}
 			em.persist(common);
 

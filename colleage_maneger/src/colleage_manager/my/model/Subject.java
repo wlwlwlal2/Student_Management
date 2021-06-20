@@ -6,20 +6,19 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table
+@Table(name = "subject")
 public class Subject {
 
 	@Id
-	@Column
+	@Column(name = "subject_code")
 	private String subnumber;
-	@Column
+	@Column(name = "subject_name")
 	private String subname;
-
-	@Column
+	@Column(name = "subject_professor")
 	private String professor;
-	@Column
+	@Column(name = "subject_type")
 	private String lecturetype;
-	@Column
+	@Column(name = "subject_needday")
 	private String needday;
 
 	public String getSubNumber() {

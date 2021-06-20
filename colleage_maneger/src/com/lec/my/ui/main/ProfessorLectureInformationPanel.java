@@ -74,6 +74,7 @@ import colleage_manager.my.api.SubjectAPI;
 import colleage_manager.my.api.UserAuth;
 import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Lecture;
+import colleage_manager.my.model.LectureHistory;
 import colleage_manager.my.model.Student;
 import colleage_manager.my.model.StudentID;
 import colleage_manager.my.model.Subject;
@@ -374,7 +375,7 @@ public class ProfessorLectureInformationPanel extends JPanel {
 			String[] label = {"이름","아이디","점수","반영점수","출석","지각","결석"};
 			for(int i = 0; i <mylist.size(); i++) {
 				Common user = commonapi.getCommon(mylist.get(i));
-				StudentID student = studentidapi.getStudentID(lecturenumber, user.getNumber());
+				LectureHistory student = studentidapi.getLectureHistory(lecturenumber, user.getNumber());
 					arr[i][0] = user.getName();
 					arr[i][1] = user.getNumber();
 					arr[i][2] = user.getNumber();

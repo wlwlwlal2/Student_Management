@@ -35,10 +35,10 @@ public class SwingMain extends JFrame {
 	 * 
 	 */
 	
-	// Database API 코드 이동 필요
-	private CommonAPI capi = CommonAPI.getInstance();
-	private SubjectAPI api = SubjectAPI.getInstance();
-	private LectureAPI lapi = LectureAPI.getInstance();
+//	// Database API 코드 이동 필요
+//	private CommonAPI capi = CommonAPI.getInstance();
+//	private SubjectAPI api = SubjectAPI.getInstance();
+//	private LectureAPI lapi = LectureAPI.getInstance();
 	
 	private static final long serialVersionUID = 1L;
 	private static SwingMain instance = new SwingMain();
@@ -53,6 +53,11 @@ public class SwingMain extends JFrame {
 	private final static String ProfessorTab = "PROFESSOR";
 	
 	private void initDB() {
+		// Database API 코드 이동 필요
+		CommonAPI capi = CommonAPI.getInstance();
+		SubjectAPI api = SubjectAPI.getInstance();
+		LectureAPI lapi = LectureAPI.getInstance();
+		
 		capi.Register("학생" ,"11", "11");
 		capi.Register("학생" ,"12", "11");
 		capi.Register("학생" ,"13", "11");
@@ -75,7 +80,7 @@ public class SwingMain extends JFrame {
 	public SwingMain() {
 		
 		initDB();
-		List<Subject> sublist = api.readAll();
+//		List<Subject> sublist = api.readAll();
 		
 		setLocation(200, 400);
 		setPreferredSize(new Dimension(500, 600));

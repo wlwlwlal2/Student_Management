@@ -62,10 +62,14 @@ import javax.swing.event.ListSelectionListener;
 
 import colleage_manager.my.api.CommonAPI;
 import colleage_manager.my.api.LectureAPI;
+import colleage_manager.my.api.StudentAPI;
+import colleage_manager.my.api.StudentIDAPI;
 import colleage_manager.my.api.SubjectAPI;
 import colleage_manager.my.api.UserAuth;
 import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Lecture;
+import colleage_manager.my.model.LectureHistory;
+import colleage_manager.my.model.StudentID;
 import colleage_manager.my.model.Subject;
 import colleage_manager.my.swing.SwingMain;
 
@@ -84,6 +88,8 @@ public class StudentLectureInformationPanel extends JPanel {
 	private CommonAPI commonapi = CommonAPI.getInstance();;
 	private SubjectAPI subjectapi = SubjectAPI.getInstance();
 	private LectureAPI lectureapi = LectureAPI.getInstance();
+	private StudentAPI studentapi = StudentAPI.getInstance();
+	private StudentIDAPI studentidapi = StudentIDAPI.getInstance();
 	private CardLayout layout = new CardLayout();
 	private SwingMain frame;
 	String[] dataDefault = { "안바뀌면 이거나옴" };
@@ -260,6 +266,7 @@ public class StudentLectureInformationPanel extends JPanel {
 				// String number,String subnumber,String name, String grade, String day
 				String lecturenumber = infoMap.get("lecturenumber").getText();
 				Common user = auth.getUser();
+				LectureHistory lech = new LectureHistory();
 				String studentnumber = user.getNumber();
 				JOptionPane op1 = new JOptionPane();
 				
@@ -271,6 +278,7 @@ public class StudentLectureInformationPanel extends JPanel {
 				
 				if (result2 == 1) {
                 	op1.showMessageDialog(null, studentnumber + " " + lecturenumber + " 강의 등록 성공");
+                	studentidapi.Register(lectureapi.getLecture(lecturenumber), studentapi.Read(studentnumber));
 					//ListUpdate();
 
 				} else 

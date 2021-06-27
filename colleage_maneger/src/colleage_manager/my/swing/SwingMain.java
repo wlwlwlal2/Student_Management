@@ -67,8 +67,9 @@ public class SwingMain extends JFrame {
 		api.Register("003","과목3", "공ㅇㅇ","전필","50");
 		api.Register("004","과목4", "공ㅇㅇ","전필","50");
 		api.Register("005","과목5", "공ㅇㅇ","전필","50");
-		lapi.Register("001","005","과목5","강의1","이ㅇㅇ","60","60");
+		lapi.Register("001",api.Read("005"),"과목5","강의1","이ㅇㅇ","60","60");
 		
+		System.out.println(api.Read("005"));
 		lapi.AddListener("001","11");
 		lapi.AddListener("001","12");
 		lapi.AddListener("001","13");

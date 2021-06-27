@@ -7,7 +7,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 @SuppressWarnings("serial")
-public class StudentID implements Serializable {
+public class LectureHistoryID implements Serializable {
 
 	@Column(name = "lecture_code") // 강의 코드
 	private String lecture;
@@ -15,10 +15,10 @@ public class StudentID implements Serializable {
 	@Column(name = "student_id") // 학생 ID
 	private String student;
 	
-	public StudentID() {
+	public LectureHistoryID() {
 	}
 	
-	public StudentID(String lecture, String student) {
+	public LectureHistoryID(String lecture, String student) {
 		this.lecture = lecture;
 		this.student = student;
 	}
@@ -45,10 +45,10 @@ public class StudentID implements Serializable {
 			return true;
 		}
 
-		if (!(o instanceof StudentID)) {
+		if (!(o instanceof LectureHistoryID)) {
 			return false;
 		}
-		StudentID other = (StudentID) o;
+		LectureHistoryID other = (LectureHistoryID) o;
 		return this.lecture.equals(other.lecture) && this.student.equals(other.student);
 	}
 

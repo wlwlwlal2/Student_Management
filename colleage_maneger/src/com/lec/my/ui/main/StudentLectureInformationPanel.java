@@ -69,7 +69,7 @@ import colleage_manager.my.api.UserAuth;
 import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Lecture;
 import colleage_manager.my.model.LectureHistory;
-import colleage_manager.my.model.StudentID;
+import colleage_manager.my.model.LectureHistoryID;
 import colleage_manager.my.model.Subject;
 import colleage_manager.my.swing.SwingMain;
 
@@ -195,13 +195,15 @@ public class StudentLectureInformationPanel extends JPanel {
 
 					if (row != -1) {
 						Lecture user = lectureapi.getLecture(val2);
+						Subject sub = user.getSubject();
+						
 						infoMap.get("lecturenumber").setText(user.getLectureNumber());
-						infoMap.get("subnumber").setText(user.getSubNumber());
+						infoMap.get("subnumber").setText(sub.getSubNumber());
 
 						// infoMap2.put("subname", user.getSubname());
-						strCombo.setSelectedItem(subjectapi.getSubject(user.getSubNumber()));
+					//	strCombo.setSelectedItem(sub.getSubName());
+						strCombo.setSelectedItem(user.getSubject());
 						System.out.println(user);
-
 						infoMap.get("lecturename").setText(user.getLectureName());
 						infoMap.get("name").setText(user.getName());
 						infoMap.get("grade").setText(user.getGrade());
@@ -278,7 +280,8 @@ public class StudentLectureInformationPanel extends JPanel {
 				
 				if (result2 == 1) {
                 	op1.showMessageDialog(null, studentnumber + " " + lecturenumber + " 강의 등록 성공");
-                	studentidapi.Register(lectureapi.getLecture(lecturenumber), studentapi.Read(studentnumber));
+                	studentidapi.Register(lecturenumber, studentnumber);
+                	System.out.println(studentidapi.Read(lecturenumber, studentnumber).getStudent().getCommon().getNumber());
 					//ListUpdate();
 
 				} else 

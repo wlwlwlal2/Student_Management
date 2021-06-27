@@ -14,7 +14,7 @@ import javax.persistence.criteria.Root;
 
 import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Student;
-import colleage_manager.my.model.StudentID;
+import colleage_manager.my.model.LectureHistoryID;
 
 public class CommonAPI extends BaseRepoAPI {
 //	private static final String PERSISTENCE_UNIT_NAME = "h2";
@@ -40,15 +40,17 @@ public class CommonAPI extends BaseRepoAPI {
 
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
-
+			em.persist(common);
+			
 			if (common.getRole() == "학생") {
 				Student student = new Student();
+				
+				student.setCommon(common);
+				//student.setNumber(number);
 
-				student.setNumber(number);
-
-				//em.persist(student); // 여기가 문제임
+				em.persist(student); // 여기가 문제임
 			}
-			em.persist(common);
+			
 
 			transaction.commit();
 		} catch (Exception e) {

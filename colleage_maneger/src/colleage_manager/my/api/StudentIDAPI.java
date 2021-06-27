@@ -16,10 +16,10 @@ import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Lecture;
 import colleage_manager.my.model.LectureHistory;
 import colleage_manager.my.model.Student;
-import colleage_manager.my.model.StudentID;
+import colleage_manager.my.model.LectureHistoryID;
 
 public class StudentIDAPI extends BaseRepoAPI {
-	
+
 	private static StudentIDAPI instance;
 
 	public static StudentIDAPI getInstance() {
@@ -29,44 +29,67 @@ public class StudentIDAPI extends BaseRepoAPI {
 		return instance;
 	}
 
-	
-	public boolean Register(Lecture lecture, Student student) {
+//	public boolean Register(Lecture lecture, Student student) {
+//		try {
+//			LectureHistory id = new LectureHistory();
+//			id.setLecture(lecture);
+//			id.setStudent(student);
+//			// user.setRole("학생");
+//
+//			EntityTransaction transaction = em.getTransaction();
+//			transaction.begin();
+//			em.persist(id);
+//			transaction.commit();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return false;
+//		}
+//		return true;
+//
+//	}
+//	
+//	public LectureHistory getLectureHistory(String lectureNumber, String studentID) {
+//		
+//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
+//
+//		CriteriaQuery<LectureHistory> cQuery = criteriaBuilder.createQuery(LectureHistory.class);
+//		Root<LectureHistory> from = cQuery.from(LectureHistory.class);
+//		Predicate where1 = criteriaBuilder.equal(from.get("lecture"), lectureNumber);
+//		Predicate where2 = criteriaBuilder.equal(from.get("student"), studentID);
+//
+//		Predicate whereFinal = criteriaBuilder.and(where1, where2);
+//		cQuery.where(whereFinal);
+//		
+//		Query query = em.createQuery(cQuery);
+//		List<LectureHistory> resultList = query.getResultList();
+//
+//		if (resultList.size() == 1)
+//			return resultList.get(0);
+//		else
+//			return null;
+//	}
+
+	public boolean Register(String lecture, String student) {
 		try {
-			LectureHistory id = new LectureHistory();
-			id.setLecture(lecture);
-			id.setStudent(student);
-			// user.setRole("학생");
+			LectureHistoryID studentid = new LectureHistoryID(lecture, student);
+			LectureHistory lecturehistory = new LectureHistory();
+			lecturehistory.setId(studentid);
 
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
-			em.persist(id);
+			em.persist(lecturehistory);
 			transaction.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			return false;
 		}
-		return true;
 
+		return true;
 	}
 	
-	public LectureHistory getLectureHistory(String lectureNumber, String studentID) {
-		
-		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-
-		CriteriaQuery<LectureHistory> cQuery = criteriaBuilder.createQuery(LectureHistory.class);
-		Root<LectureHistory> from = cQuery.from(LectureHistory.class);
-		Predicate where1 = criteriaBuilder.equal(from.get("lecture_code"), lectureNumber);
-		Predicate where2 = criteriaBuilder.equal(from.get("Student_ID"), studentID);
-
-		Predicate whereFinal = criteriaBuilder.and(where1, where2);
-		cQuery.where(whereFinal);
-		
-		Query query = em.createQuery(cQuery);
-		List<LectureHistory> resultList = query.getResultList();
-
-		if (resultList.size() == 1)
-			return resultList.get(0);
-		else
-			return null;
+	public LectureHistory Read(String lecture, String student) {
+		LectureHistoryID studentid = new LectureHistoryID(lecture, student);
+		return em.find(LectureHistory.class, studentid);
 	}
 }

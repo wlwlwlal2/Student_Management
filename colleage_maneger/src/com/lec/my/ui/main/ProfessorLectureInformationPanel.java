@@ -76,7 +76,7 @@ import colleage_manager.my.model.Common;
 import colleage_manager.my.model.Lecture;
 import colleage_manager.my.model.LectureHistory;
 import colleage_manager.my.model.Student;
-import colleage_manager.my.model.StudentID;
+import colleage_manager.my.model.LectureHistoryID;
 import colleage_manager.my.model.Subject;
 import colleage_manager.my.swing.SwingMain;
 
@@ -194,20 +194,22 @@ public class ProfessorLectureInformationPanel extends JPanel {
 				// String val3 = val1.substring(val1.lastIndexOf("(") +
 				// 1,val1.lastIndexOf(")"));
 
-				System.out.println(val1);
+
 
 				if (val1 != null) {
 					String val2 = val1;
 
 					if (row != -1) {
 						Lecture user = lectureapi.getLecture(val2);
+						Subject sub = user.getSubject();
+						
 						infoMap.get("lecturenumber").setText(user.getLectureNumber());
-						infoMap.get("subnumber").setText(user.getSubNumber());
+						infoMap.get("subnumber").setText(sub.getSubNumber());
 
 						// infoMap2.put("subname", user.getSubname());
-						strCombo.setSelectedItem(subjectapi.getSubject(user.getSubNumber()));
+					//	strCombo.setSelectedItem(sub.getSubName());
+						strCombo.setSelectedItem(user.getSubject());
 						System.out.println(user);
-
 						infoMap.get("lecturename").setText(user.getLectureName());
 						infoMap.get("name").setText(user.getName());
 						infoMap.get("grade").setText(user.getGrade());
@@ -280,7 +282,7 @@ public class ProfessorLectureInformationPanel extends JPanel {
 				String grade = infoMap.get("grade").getText();
 				String day = infoMap.get("day").getText();
 
-				lectureapi.Register(lecturenumber, subnumber, subname, lecturename, name, grade, day);
+				lectureapi.Register(lecturenumber,subjectapi.getSubject(subnumber), subname, lecturename, name, grade, day);
 				Lecture result2 = lectureapi.Read(subnumber);
 
 				JOptionPane op1 = new JOptionPane();
@@ -375,7 +377,7 @@ public class ProfessorLectureInformationPanel extends JPanel {
 			String[] label = {"이름","아이디","점수","반영점수","출석","지각","결석"};
 			for(int i = 0; i <mylist.size(); i++) {
 				Common user = commonapi.getCommon(mylist.get(i));
-				LectureHistory student = studentidapi.getLectureHistory(lecturenumber, user.getNumber());
+				LectureHistory student = studentidapi.Read(lecturenumber, user.getNumber());
 					arr[i][0] = user.getName();
 					arr[i][1] = user.getNumber();
 					arr[i][2] = user.getNumber();

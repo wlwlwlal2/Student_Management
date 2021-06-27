@@ -32,13 +32,17 @@ public class LectureAPI extends BaseRepoAPI {
 		return instance;
 	}
 
-	public boolean Register(String lecturenumber, String subnumber, String subname, String lecturename, String name,
+	public boolean Register(String lecturenumber, Subject subject, String subname, String lecturename, String name,
 			String grade, String day) {
+		
+		SubjectAPI sapi = SubjectAPI.getInstance();
+		
 		try {
 
 			Lecture lecture = new Lecture();
 			lecture.setLectureNumber(lecturenumber);
-			lecture.setSubNumber(subnumber);
+//			lecture.setSubNumber(subnumber);
+			lecture.setSubject(subject);
 			lecture.setSubname(subname);
 			lecture.setName(name);
 			lecture.setLectureName(lecturename);
@@ -70,7 +74,7 @@ public class LectureAPI extends BaseRepoAPI {
 
 			// subject.setSubNumber(subnumber);
 			lecture.setLectureNumber(lecturenumber);
-			lecture.setSubNumber(subnumber);
+//			lecture.setSubNumber(subnumber);
 			lecture.setSubname(subname);
 			lecture.setName(name);
 			lecture.setLectureName(lecturename);
@@ -89,7 +93,7 @@ public class LectureAPI extends BaseRepoAPI {
 	public void Delete(String subnumber) {
 
 		Lecture subject = em.find(Lecture.class, subnumber);
-		subject.setSubNumber(subnumber);
+		//subject.setSubNumber(subnumber);
 
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
@@ -106,7 +110,7 @@ public class LectureAPI extends BaseRepoAPI {
 
 		CriteriaQuery<Lecture> cQuery = criteriaBuilder.createQuery(Lecture.class);
 		Root<Lecture> from = cQuery.from(Lecture.class);
-		Predicate where1 = criteriaBuilder.equal(from.get("lecturenumber"), lecturenumber);
+		Predicate where1 = criteriaBuilder.equal(from.get("lectureNumber"), lecturenumber);
 
 		Predicate whereFinal = criteriaBuilder.and(where1);
 		cQuery.where(whereFinal);

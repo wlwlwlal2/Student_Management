@@ -27,8 +27,6 @@ public class Lecture {
 	@JoinColumn(name = "subject_code", insertable = false, updatable = false)
 	private Subject subject; // 과목코드
 	
-	@Column(name = "sub_number")
-	private String subnumber; // 기존 코드 에러떠서 넣음
 	
 	@Column(name = "pro_number")
 	private String proNumber; // 교수 번호
@@ -59,13 +57,13 @@ public class Lecture {
 		this.subject = subnumber;
 	}
 
-	public String getSubNumber() {
-		return subnumber;
-	}
-
-	public void setSubNumber(String subnumber) {
-		this.subnumber = subnumber;
-	}
+//	public String getSubNumber() {
+//		return subnumber;
+//	}
+//
+//	public void setSubNumber(String subnumber) {
+//		this.subnumber = subnumber;
+//	}
 	
 	public String getLectureNumber() {
 		return lectureNumber;

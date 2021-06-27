@@ -18,7 +18,7 @@ import javax.persistence.Table;
 @Table(name = "lecture_history")
 public class LectureHistory implements Serializable {
 	@EmbeddedId
-	private StudentID id = new StudentID();
+	private LectureHistoryID id = new LectureHistoryID();
 	
 	@ManyToOne
 	@MapsId("lecture")
@@ -49,11 +49,11 @@ public class LectureHistory implements Serializable {
 	@Column(name = "absence")
 	private String absence; // 결석
 	
-	public void setId(StudentID id) {
+	public void setId(LectureHistoryID id) {
 		this.id = id;
 	}
 	
-	public StudentID getId() {
+	public LectureHistoryID getId() {
 		return id;
 	}
 
@@ -111,6 +111,9 @@ public class LectureHistory implements Serializable {
 		this.absence = absence;
 	}
 }
+
+// 쿼리문 써서 복합키 작동시키기
+
 
 //package colleage_manager.my.model;
 //

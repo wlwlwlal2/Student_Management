@@ -29,55 +29,25 @@ public class LectureHistoryAPI extends BaseRepoAPI {
 		return instance;
 	}
 
-//	public boolean Register(Lecture lecture, Student student) {
-//		try {
-//			LectureHistory id = new LectureHistory();
-//			id.setLecture(lecture);
-//			id.setStudent(student);
-//			// user.setRole("ÇÐ»ý");
-//
-//			EntityTransaction transaction = em.getTransaction();
-//			transaction.begin();
-//			em.persist(id);
-//			transaction.commit();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			return false;
-//		}
-//		return true;
-//
-//	}
-//	
-//	public LectureHistory getLectureHistory(String lectureNumber, String studentID) {
-//		
-//		CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-//
-//		CriteriaQuery<LectureHistory> cQuery = criteriaBuilder.createQuery(LectureHistory.class);
-//		Root<LectureHistory> from = cQuery.from(LectureHistory.class);
-//		Predicate where1 = criteriaBuilder.equal(from.get("lecture"), lectureNumber);
-//		Predicate where2 = criteriaBuilder.equal(from.get("student"), studentID);
-//
-//		Predicate whereFinal = criteriaBuilder.and(where1, where2);
-//		cQuery.where(whereFinal);
-//		
-//		Query query = em.createQuery(cQuery);
-//		List<LectureHistory> resultList = query.getResultList();
-//
-//		if (resultList.size() == 1)
-//			return resultList.get(0);
-//		else
-//			return null;
-//	}
+	private SubjectAPI subjectapi = SubjectAPI.getInstance();
+	private LectureAPI lectureapi = LectureAPI.getInstance();
+	private StudentAPI studentapi = StudentAPI.getInstance();
+	private CommonAPI commonapi = CommonAPI.getInstance();
 
 	public boolean Register(String lecture, String student) {
 		try {
-			LectureHistoryID studentid = new LectureHistoryID(lecture, student);
-			LectureHistory lecturehistory = new LectureHistory();
-			lecturehistory.setId(studentid);
+//			LectureHistoryID studentid = new LectureHistoryID(lecture, student);
+//			LectureHistory lecturehistory = new LectureHistory();
+//			lecturehistory.setId(studentid);
 
 			EntityTransaction transaction = em.getTransaction();
 			transaction.begin();
-			em.persist(lecturehistory);
+			
+			em.createNativeQuery("INSERT INTO lecture_history (lecture, student) VALUES (?,?)").setParameter(1,lectureapi.Read(lecture) )
+			.setParameter(2, studentapi.Read(student)).executeUpdate();
+			
+			
+			em.persist(student);
 			transaction.commit();
 
 		} catch (Exception e) {

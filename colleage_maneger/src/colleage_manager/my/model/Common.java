@@ -118,4 +118,5 @@ public class Common {
 	public void setRole(String role) {
 		this.role = role;
 	}
+	
 }

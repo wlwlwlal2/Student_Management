@@ -46,11 +46,11 @@ public class CommonAPI extends BaseRepoAPI {
 				Student student = new Student();
 				
 				student.setCommon(common);
-				//student.setNumber(number);
-
-				em.persist(student); // 여기가 문제임
+				student.setNumber(number);
+				
+				em.persist(student);
+				
 			}
-			
 
 			transaction.commit();
 		} catch (Exception e) {

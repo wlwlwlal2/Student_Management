@@ -26,6 +26,8 @@ public class Student implements Serializable {
 	@OneToMany(mappedBy = "student")
 	private Set<LectureHistory> history = new HashSet<LectureHistory>();
 	
+	@Column(name = "student_number")
+	private String number;
 	@Column(name = "student_code")
 	private String subject;
 	@Column(name = "student_grade")
@@ -50,13 +52,12 @@ public class Student implements Serializable {
 		this.common = common;
 	}
 	
-//	public String getNumber() {
-//		return number;
-//	}
-//	public void setNumber(String number) {
-//		this.number = number;
-//	}
-	
+	public String getNumber() {
+		return number;
+	}
+	public void setNumber(String number) {
+		this.number = number;
+	}
 	public ArrayList getLectureList() {
 		return lectureList;
 }

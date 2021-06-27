@@ -63,7 +63,7 @@ import javax.swing.event.ListSelectionListener;
 import colleage_manager.my.api.CommonAPI;
 import colleage_manager.my.api.LectureAPI;
 import colleage_manager.my.api.StudentAPI;
-import colleage_manager.my.api.StudentIDAPI;
+import colleage_manager.my.api.LectureHistoryAPI;
 import colleage_manager.my.api.SubjectAPI;
 import colleage_manager.my.api.UserAuth;
 import colleage_manager.my.model.Common;
@@ -89,7 +89,7 @@ public class StudentLectureInformationPanel extends JPanel {
 	private SubjectAPI subjectapi = SubjectAPI.getInstance();
 	private LectureAPI lectureapi = LectureAPI.getInstance();
 	private StudentAPI studentapi = StudentAPI.getInstance();
-	private StudentIDAPI studentidapi = StudentIDAPI.getInstance();
+	private LectureHistoryAPI studentidapi = LectureHistoryAPI.getInstance();
 	private CardLayout layout = new CardLayout();
 	private SwingMain frame;
 	String[] dataDefault = { "¾È¹Ù²î¸é ÀÌ°Å³ª¿È" };

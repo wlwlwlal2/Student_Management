@@ -18,13 +18,13 @@ import colleage_manager.my.model.LectureHistory;
 import colleage_manager.my.model.Student;
 import colleage_manager.my.model.LectureHistoryID;
 
-public class StudentIDAPI extends BaseRepoAPI {
+public class LectureHistoryAPI extends BaseRepoAPI {
 
-	private static StudentIDAPI instance;
+	private static LectureHistoryAPI instance;
 
-	public static StudentIDAPI getInstance() {
+	public static LectureHistoryAPI getInstance() {
 		if (instance == null) {
-			instance = new StudentIDAPI();
+			instance = new LectureHistoryAPI();
 		}
 		return instance;
 	}
